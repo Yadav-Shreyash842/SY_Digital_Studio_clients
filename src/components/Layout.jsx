@@ -12,7 +12,7 @@ export const SiteLayout = ({ children }) => {
   const dashboardPath = isAdmin ? '/admin' : '/dashboard';
 
   return (
-    <div className="min-h-screen text-slate-100">
+    <div className="min-h-screen overflow-x-hidden text-slate-100">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/95 text-slate-900 shadow-sm backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:gap-4 sm:py-4 lg:px-8">
           <Link to="/" className="flex items-center gap-3">
@@ -47,8 +47,8 @@ export const SiteLayout = ({ children }) => {
         </div>
 
         {open ? (
-          <div className="absolute left-0 right-0 top-full border-t border-slate-200 bg-white px-4 py-4 shadow-2xl lg:hidden">
-            <div className="flex max-h-[calc(100vh-5rem)] flex-col gap-3 overflow-y-auto text-sm text-slate-600">
+          <div className="fixed left-0 right-0 top-0 z-50 h-dvh border-t border-slate-200 bg-white/98 px-4 pb-6 pt-20 shadow-2xl backdrop-blur-xl lg:hidden">
+            <div className="mx-auto flex h-full max-w-7xl flex-col gap-3 overflow-y-auto text-sm text-slate-600">
               {navItems.map(([label, href]) => (
                 <a key={label} href={href} onClick={() => setOpen(false)} className="rounded-2xl px-3 py-3 font-medium transition hover:bg-slate-100">
                   {label}
@@ -77,11 +77,11 @@ export const SiteLayout = ({ children }) => {
 
       <main className="pt-24">{children}</main>
 
-      <div className="fixed bottom-3 left-3 right-3 z-40 flex flex-row gap-3 sm:bottom-6 sm:left-auto sm:right-6 sm:flex-col">
-        <a href={contactChannels.whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 transition hover:-translate-y-0.5 hover:bg-emerald-400">
+      <div className="fixed bottom-3 left-3 right-3 z-40 flex max-w-[calc(100vw-1.5rem)] flex-col gap-3 sm:bottom-6 sm:left-auto sm:right-6 sm:max-w-none">
+        <a href={contactChannels.whatsapp} target="_blank" rel="noreferrer" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 transition hover:-translate-y-0.5 hover:bg-emerald-400 sm:w-auto">
           <FaWhatsapp /> WhatsApp
         </a>
-        <a href={contactChannels.booking} className="inline-flex items-center gap-2 rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-950/30 transition hover:-translate-y-0.5 hover:bg-slate-800">
+        <a href={contactChannels.booking} className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-slate-950 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-slate-950/30 transition hover:-translate-y-0.5 hover:bg-slate-800 sm:w-auto">
           <FaEnvelope /> Contact
         </a>
       </div>

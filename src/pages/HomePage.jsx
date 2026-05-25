@@ -45,7 +45,7 @@ export default function HomePage() {
   return (
     <div className="relative overflow-hidden">
       <section id="hero" className="relative isolate min-h-svh overflow-hidden px-4 pb-12 pt-20 sm:pb-20 sm:pt-28 lg:px-8 lg:pt-14">
-        <video className="hero-video absolute inset-0 hidden h-full w-full object-cover md:block" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80">
+        <video className="hero-video absolute inset-0 h-full w-full object-cover object-top md:block md:object-center" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80">
           <source src={heroVideoUrl} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/55" />
@@ -78,11 +78,6 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="mt-8 overflow-hidden rounded-[1.75rem] border border-white/15 bg-black/25 shadow-2xl md:hidden">
-              <video className="h-[52svh] w-full object-cover object-center" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80">
-                <source src={heroVideoUrl} type="video/mp4" />
-              </video>
-            </div>
           </FadeIn>
 
           <FadeIn delay={0.12}>
