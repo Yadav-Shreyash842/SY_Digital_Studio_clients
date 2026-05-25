@@ -44,8 +44,8 @@ export default function HomePage() {
 
   return (
     <div className="relative overflow-hidden">
-      <section id="hero" className="relative isolate min-h-svh overflow-hidden px-4 pb-16 pt-24 sm:pb-20 sm:pt-28 lg:px-8 lg:pt-14">
-        <video className="hero-video absolute inset-0 h-full w-full object-cover" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80">
+      <section id="hero" className="relative isolate min-h-svh overflow-hidden px-4 pb-12 pt-20 sm:pb-20 sm:pt-28 lg:px-8 lg:pt-14">
+        <video className="hero-video absolute inset-0 hidden h-full w-full object-cover md:block" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80">
           <source src={heroVideoUrl} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/55" />
@@ -57,15 +57,15 @@ export default function HomePage() {
               <FaBarsProgress />
               {hero.label}
             </div>
-            <h1 className="mt-6 max-w-4xl text-4xl font-semibold tracking-tight text-white leading-[1.05] sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-[12ch] text-3xl font-semibold tracking-tight text-white leading-[1.05] sm:max-w-4xl sm:text-5xl md:text-6xl lg:text-7xl">
               {hero.title}
             </h1>
             <p className="mt-5 max-w-2xl text-base leading-7 text-slate-100/90 sm:text-lg sm:leading-8">{hero.copy}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
-              <Link to="/signup" className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-950 transition hover:scale-105">
+              <Link to="/signup" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-950 transition hover:scale-105 sm:w-auto">
                 Hire Us <FaArrowRight />
               </Link>
-              <a href="#contact" className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-md transition hover:bg-white/20">
+              <a href="#contact" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-md transition hover:bg-white/20 sm:w-auto">
                 Book Consultation
               </a>
             </div>
@@ -76,6 +76,12 @@ export default function HomePage() {
                   <p className="mt-2 text-3xl font-semibold text-white"><AnimatedNumber value={item.value} suffix={item.suffix} /></p>
                 </div>
               ))}
+            </div>
+
+            <div className="mt-8 overflow-hidden rounded-[1.75rem] border border-white/15 bg-black/25 shadow-2xl md:hidden">
+              <video className="h-[52svh] w-full object-cover object-center" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80">
+                <source src={heroVideoUrl} type="video/mp4" />
+              </video>
             </div>
           </FadeIn>
 

@@ -14,9 +14,9 @@ export const SiteLayout = ({ children }) => {
   return (
     <div className="min-h-screen text-slate-100">
       <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-200/80 bg-white/95 text-slate-900 shadow-sm backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:py-4 lg:px-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-3 py-3 sm:gap-4 sm:py-4 lg:px-8">
           <Link to="/" className="flex items-center gap-3">
-            <img src="/images/logo.svg" alt="SY Digital Studio" className="h-10 md:h-12" />
+            <img src="/images/logo.svg" alt="SY Digital Studio" className="h-8 md:h-12" />
           </Link>
 
           <button className="rounded-full border border-slate-200 p-2.5 lg:hidden" onClick={() => setOpen((value) => !value)} aria-label="Toggle navigation">
@@ -47,26 +47,26 @@ export const SiteLayout = ({ children }) => {
         </div>
 
         {open ? (
-          <div className="border-t border-slate-200 bg-white px-4 py-4 shadow-lg lg:hidden">
-            <div className="flex max-h-[calc(100vh-5rem)] flex-col gap-4 overflow-y-auto text-sm text-slate-600">
+          <div className="absolute left-0 right-0 top-full border-t border-slate-200 bg-white px-4 py-4 shadow-2xl lg:hidden">
+            <div className="flex max-h-[calc(100vh-5rem)] flex-col gap-3 overflow-y-auto text-sm text-slate-600">
               {navItems.map(([label, href]) => (
-                <a key={label} href={href} onClick={() => setOpen(false)}>
+                <a key={label} href={href} onClick={() => setOpen(false)} className="rounded-2xl px-3 py-3 font-medium transition hover:bg-slate-100">
                   {label}
                 </a>
               ))}
               {auth?.user ? (
                 <>
                   {isAdmin ? (
-                    <Link to="/admin" onClick={() => setOpen(false)}>
+                    <Link to="/admin" onClick={() => setOpen(false)} className="rounded-2xl px-3 py-3 font-medium transition hover:bg-slate-100">
                       Admin Panel
                     </Link>
                   ) : null}
-                  <Link to={dashboardPath} onClick={() => setOpen(false)}>
+                  <Link to={dashboardPath} onClick={() => setOpen(false)} className="rounded-2xl px-3 py-3 font-medium transition hover:bg-slate-100">
                     Open Dashboard
                   </Link>
                 </>
               ) : (
-                <Link to="/login" onClick={() => setOpen(false)}>
+                <Link to="/login" onClick={() => setOpen(false)} className="rounded-2xl px-3 py-3 font-medium transition hover:bg-slate-100">
                   Client Login
                 </Link>
               )}
@@ -77,7 +77,7 @@ export const SiteLayout = ({ children }) => {
 
       <main className="pt-24">{children}</main>
 
-      <div className="fixed bottom-4 right-4 z-40 flex flex-col gap-3 sm:bottom-6 sm:right-6">
+      <div className="fixed bottom-3 left-3 right-3 z-40 flex flex-row gap-3 sm:bottom-6 sm:left-auto sm:right-6 sm:flex-col">
         <a href={contactChannels.whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full bg-emerald-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 transition hover:-translate-y-0.5 hover:bg-emerald-400">
           <FaWhatsapp /> WhatsApp
         </a>
