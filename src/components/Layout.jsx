@@ -77,7 +77,7 @@ export const SiteLayout = ({ children }) => {
 
       <main className="pt-24">{children}</main>
 
-      <div className="fixed bottom-3 left-3 right-3 z-40 flex max-w-[calc(100vw-1.5rem)] flex-col gap-3 sm:bottom-6 sm:left-auto sm:right-6 sm:max-w-none">
+      <div className="fixed inset-x-3 bottom-3 z-40 flex flex-col gap-3 sm:bottom-6 sm:left-auto sm:right-6 sm:inset-x-auto sm:max-w-none">
         <a href={contactChannels.whatsapp} target="_blank" rel="noreferrer" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-emerald-500 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 transition hover:-translate-y-0.5 hover:bg-emerald-400 sm:w-auto">
           <FaWhatsapp /> WhatsApp
         </a>
