@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="72" viewBox="0 0 420 72" fill="none">
+  <defs>
+    <style>
+      .brand-text { font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; font-weight: 700; font-size: 20px; }
+      .brand-sub { font-weight: 600; font-size: 20px; }
+      .brand-digital { fill: #1e90ff; }
+    </style>
+  </defs>
+  <!-- Icon: two rounded panels -->
+  <g transform="translate(0,6)">
+    <rect x="0" y="0" width="56" height="56" rx="12" fill="#0f1724" />
+    <rect x="60" y="0" width="56" height="56" rx="12" fill="#1e90ff" />
+    <text x="28" y="36" text-anchor="middle" alignment-baseline="middle" font-family="Inter, sans-serif" font-size="26" font-weight="700" fill="#ffffff">s</text>
+    <text x="88" y="36" text-anchor="middle" alignment-baseline="middle" font-family="Inter, sans-serif" font-size="28" font-weight="800" fill="#ffffff">Y</text>
+  </g>
+
+  <!-- Wordmark -->
+  <g transform="translate(140,42)">
+    <text x="0" y="-6" class="brand-text" fill="#0b1220">SY <tspan class="brand-digital">Digital</tspan> Studio</text>
+  </g>
+</svg>

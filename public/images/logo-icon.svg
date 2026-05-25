@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none">
+  <rect x="0" y="0" width="28" height="28" rx="6" fill="#0f1724" />
+  <rect x="36" y="0" width="28" height="28" rx="6" fill="#1e90ff" />
+  <text x="14" y="20" text-anchor="middle" alignment-baseline="middle" font-family="Inter, sans-serif" font-size="16" font-weight="700" fill="#ffffff">s</text>
+  <text x="50" y="20" text-anchor="middle" alignment-baseline="middle" font-family="Inter, sans-serif" font-size="18" font-weight="800" fill="#ffffff">Y</text>
+</svg>
