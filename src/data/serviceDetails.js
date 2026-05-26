@@ -1,0 +1,342 @@
+import { services } from './siteContent.js';
+
+const serviceBySlug = Object.fromEntries(services.map((service) => [service.slug, service]));
+
+const buildServicePage = (slug, content) => ({
+  ...serviceBySlug[slug],
+  ...content,
+});
+
+export const serviceDetails = {
+  'mern-stack-development': buildServicePage('mern-stack-development', {
+    heroCopy: 'Build secure web platforms, client portals, dashboards, and admin systems that can scale with the business.',
+    overview: 'MERN development gives startups and agencies one stack for interface, API, and data delivery. It is ideal when a business needs authenticated experiences, repeatable workflows, and clean delivery pipelines.',
+    audience: 'Startups, agencies, operations teams, and founders who need a real product instead of a static brochure site.',
+    need: 'Businesses outgrow spreadsheet workflows quickly. A MERN build centralizes users, permissions, content, requests, and reporting in one reliable system.',
+    businessBenefits: ['Faster operations', 'Lower support load', 'Better visibility', 'Reusable architecture'],
+    technologies: ['MongoDB', 'Express', 'React', 'Node.js', 'JWT', 'REST APIs', 'Tailwind CSS', 'Framer Motion'],
+    features: [
+      { title: 'Authentication and roles', copy: 'Secure sign-in flows, role-based access, and account recovery built for real client operations.' },
+      { title: 'Admin systems', copy: 'Dashboard tools for managing leads, content, approvals, and service requests from one place.' },
+      { title: 'Client portals', copy: 'Private spaces where customers can track progress, share files, and review updates.' },
+      { title: 'Production APIs', copy: 'Structured endpoints that support scale, integrations, and future product expansion.' },
+    ],
+    workflow: [
+      { step: 'Discovery', copy: 'Map the product goals, internal workflow, and data model before any interface work begins.' },
+      { step: 'Strategy', copy: 'Plan roles, endpoints, database relationships, and launch milestones around the business outcome.' },
+      { step: 'Design', copy: 'Shape the dashboard, onboarding, and portal experience with premium clarity and trust signals.' },
+      { step: 'Development', copy: 'Build React screens, Express routes, data services, and authenticated user journeys.' },
+      { step: 'Testing', copy: 'Verify security, permissions, responsiveness, and performance across the critical flows.' },
+      { step: 'Launch', copy: 'Deploy the platform, hand over access, and support the first growth cycle after release.' },
+    ],
+    benefits: ['Scalable from launch to growth', 'Centralized business data', 'Better client trust', 'Faster team execution'],
+    caseStudies: [
+      { name: 'Creative client portal', result: 'Reduced back-and-forth approvals by 44% and improved project visibility.', context: 'An agency needed a private portal for leads, files, and milestone review.' },
+      { name: 'Internal ops dashboard', result: 'Cut manual reporting time from hours to minutes with a unified admin panel.', context: 'An operations team needed a secure backend for workflows and analytics.' },
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1526374965328-5f61d4dc18c5?auto=format&fit=crop&w=1200&q=80',
+    ],
+    pricing: [
+      { name: 'Starter', price: '$4,500', timeline: '3-4 weeks', support: '14 days support', features: ['Single product flow', 'Core auth', 'Responsive UI', 'Basic admin tools'] },
+      { name: 'Professional', price: '$8,500', timeline: '5-7 weeks', support: '30 days support', featured: true, features: ['Client portal', 'Role permissions', 'Dashboards', 'API integrations'] },
+      { name: 'Enterprise', price: '$15,000+', timeline: '8-12 weeks', support: '60 days support', features: ['Custom architecture', 'Automation', 'Analytics layer', 'Dedicated launch support'] },
+    ],
+    faqs: [
+      { question: 'Can you handle authentication and roles?', answer: 'Yes. We build secure auth, protected routes, role-based permissions, and account recovery flows.' },
+      { question: 'Is MERN a good fit for dashboards?', answer: 'Yes. It is one of the best stacks for authenticated dashboards, admin tools, and client portals.' },
+      { question: 'Can the project grow later?', answer: 'The architecture is designed to scale with additional modules, users, and integrations.' },
+      { question: 'Do you help after launch?', answer: 'Support is included based on the package, with optional ongoing maintenance available.' },
+    ],
+    testimonials: [
+      { name: 'Mason Lee', company: 'Aurora Labs', quote: 'The system felt like a real product from day one, not a patched-together web app.' },
+      { name: 'Priya Desai', company: 'Northstar Finance', quote: 'The dashboards and auth flow made our process look more mature to clients.' },
+    ],
+  }),
+  'react-development': buildServicePage('react-development', {
+    heroCopy: 'Create premium interfaces with reusable components, smooth motion, and performance-focused frontend systems.',
+    overview: 'React development is the best choice when a brand needs a fast, modern frontend that can evolve without becoming messy. It supports products, landing pages, portals, and app-like experiences.',
+    audience: 'Founders, product teams, and agencies that care about visual polish, speed, and maintainable code.',
+    need: 'A strong React build helps a business look current, load quickly, and guide users through the right action with less friction.',
+    businessBenefits: ['Premium first impression', 'Component reuse', 'Better performance', 'Faster iteration'],
+    technologies: ['React', 'Vite', 'Framer Motion', 'Tailwind CSS', 'React Router', 'State management', 'Accessibility', 'Performance tuning'],
+    features: [
+      { title: 'Reusable systems', copy: 'Build once, reuse everywhere, and keep the UI consistent across pages and products.' },
+      { title: 'Motion-led interactions', copy: 'Smooth transitions that improve clarity and make the brand feel more premium.' },
+      { title: 'Performance optimization', copy: 'Trim unnecessary work and keep the frontend quick on mobile and desktop.' },
+      { title: 'Responsive architecture', copy: 'Layouts that adapt cleanly without sacrificing hierarchy or polish.' },
+    ],
+    workflow: [
+      { step: 'Discovery', copy: 'Review product goals, audience behavior, and the interface patterns that matter most.' },
+      { step: 'Strategy', copy: 'Define component structure, page states, and motion behavior before building.' },
+      { step: 'Design', copy: 'Translate the visual system into React-friendly sections and reusable UI blocks.' },
+      { step: 'Development', copy: 'Implement component-driven layouts, routing, and premium interaction patterns.' },
+      { step: 'Testing', copy: 'Validate responsiveness, accessibility, and performance across common devices.' },
+      { step: 'Launch', copy: 'Ship the frontend with clear handover notes and room for future expansion.' },
+    ],
+    benefits: ['Cleaner codebase', 'More consistent UI', 'Better user engagement', 'Faster product delivery'],
+    caseStudies: [
+      { name: 'SaaS marketing site', result: 'Raised demo clicks by 36% after a motion and layout refresh.', context: 'A startup needed a sharper, more credible frontend for launch.' },
+      { name: 'Internal operations UI', result: 'Improved task completion speed with reusable components and tighter hierarchy.', context: 'A team wanted a dashboard that felt less cluttered and more responsive.' },
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1522542550221-31fd19575a2d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
+    ],
+    pricing: [
+      { name: 'Starter', price: '$3,500', timeline: '2-3 weeks', support: '14 days support', features: ['Landing page build', 'Core sections', 'Responsive UI', 'Basic motion'] },
+      { name: 'Professional', price: '$6,500', timeline: '4-6 weeks', support: '30 days support', featured: true, features: ['Multi-page frontend', 'Reusable components', 'Routing', 'Performance tuning'] },
+      { name: 'Enterprise', price: '$11,000+', timeline: '6-10 weeks', support: '60 days support', features: ['Design system', 'Complex states', 'Advanced animations', 'Scalable architecture'] },
+    ],
+    faqs: [
+      { question: 'Will the frontend stay maintainable?', answer: 'Yes. The build uses reusable structure and component-driven patterns for long-term support.' },
+      { question: 'Can you add animations without slowing it down?', answer: 'Yes. Motion is added selectively and tested to keep the experience fast.' },
+      { question: 'Do you support existing designs?', answer: 'Yes. We can implement from scratch or convert a Figma system into React.' },
+      { question: 'Can this connect to APIs?', answer: 'Yes. React works well with any modern backend or third-party service.' },
+    ],
+    testimonials: [
+      { name: 'Aarav Shah', company: 'LaunchKit', quote: 'The frontend felt polished, fast, and far more premium than our previous version.' },
+      { name: 'Nina Thomas', company: 'BrightOps', quote: 'The reusable setup made future edits much easier for our team.' },
+    ],
+  }),
+  'landing-page-design': buildServicePage('landing-page-design', {
+    heroCopy: 'Turn traffic into leads with landing pages built around conversion, trust, and a strong call to action.',
+    overview: 'Landing page design focuses on clarity, persuasion, and momentum. It is the right service when a business needs one page to sell an offer, launch a product, or capture qualified inquiries.',
+    audience: 'Startups, campaigns, service businesses, and founders launching offers that need measurable conversion.',
+    need: 'A good landing page answers the visitor fast, reduces hesitation, and makes the next step obvious.',
+    businessBenefits: ['Higher lead quality', 'Better CTA focus', 'Stronger first impression', 'Clearer messaging'],
+    technologies: ['Conversion copy', 'A/B-ready layouts', 'Analytics', 'Forms', 'React', 'Motion design', 'SEO foundations', 'Tracking pixels'],
+    features: [
+      { title: 'CTA strategy', copy: 'Buttons, offers, and section order are planned to reduce friction and increase response rate.' },
+      { title: 'Hero storytelling', copy: 'The top of the page instantly explains what the business does and why it matters.' },
+      { title: 'Trust blocks', copy: 'Social proof, FAQs, and benefits are used to remove doubt before the form step.' },
+      { title: 'Lead capture', copy: 'Forms and conversion points are designed for speed, clarity, and qualification.' },
+    ],
+    workflow: [
+      { step: 'Discovery', copy: 'Identify the offer, audience, and conversion goal before laying out the page.' },
+      { step: 'Strategy', copy: 'Map the persuasive flow, CTA placement, and proof elements that matter most.' },
+      { step: 'Design', copy: 'Create a clean visual hierarchy that keeps attention moving toward the action.' },
+      { step: 'Development', copy: 'Build the page with responsive components, forms, and smooth motion.' },
+      { step: 'Testing', copy: 'Check readability, mobile behavior, page speed, and form friction.' },
+      { step: 'Launch', copy: 'Go live with tracking in place so the business can measure results immediately.' },
+    ],
+    benefits: ['More inquiries', 'Sharper messaging', 'Higher trust', 'Less drop-off'],
+    caseStudies: [
+      { name: 'Startup launch page', result: 'Improved consultation requests by 58% after tightening the CTA flow.', context: 'A young company needed a launch page that could do the selling.' },
+      { name: 'Service offer page', result: 'Reduced bounce rate with a stronger hero message and proof blocks.', context: 'A studio wanted to convert colder traffic into qualified leads.' },
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1516321310768-61f8f1f1f5c1?auto=format&fit=crop&w=1200&q=80',
+    ],
+    pricing: [
+      { name: 'Starter', price: '$2,200', timeline: '1-2 weeks', support: '7 days support', features: ['Single-page layout', 'Lead form', 'Basic CTA flow', 'Mobile-first design'] },
+      { name: 'Professional', price: '$4,200', timeline: '2-4 weeks', support: '21 days support', featured: true, features: ['Copy guidance', 'Analytics setup', 'Trust blocks', 'Conversion tuning'] },
+      { name: 'Enterprise', price: '$7,500+', timeline: '4-6 weeks', support: '30 days support', features: ['Multi-variant launch', 'A/B structure', 'Advanced integrations', 'Campaign support'] },
+    ],
+    faqs: [
+      { question: 'Can a landing page really increase leads?', answer: 'Yes. Clear messaging and strong CTA placement often improve the quality of inquiries.' },
+      { question: 'Do you help with the copy?', answer: 'We guide the structure and message hierarchy so the offer reads clearly and professionally.' },
+      { question: 'Can it be connected to ads and analytics?', answer: 'Yes. Tracking pixels and analytics tools can be added for campaign measurement.' },
+      { question: 'Is the page mobile responsive?', answer: 'Yes. Mobile behavior is a priority because many leads arrive on phones.' },
+    ],
+    testimonials: [
+      { name: 'Farah Ahmed', company: 'Pulse Launch', quote: 'The page finally felt like it was built to convert, not just to exist.' },
+      { name: 'Karan Mehta', company: 'Orbit Studio', quote: 'We saw better lead quality almost immediately after launch.' },
+    ],
+  }),
+  'ui-ux-design': buildServicePage('ui-ux-design', {
+    heroCopy: 'Design product experiences that are easier to understand, easier to use, and more credible for clients.',
+    overview: 'UI/UX design combines research, structure, and visual polish to make software feel simple and premium. It is ideal when a product needs better usability, better hierarchy, and a stronger user journey.',
+    audience: 'Founders, SaaS teams, internal tool builders, and businesses redesigning customer-facing workflows.',
+    need: 'Good design reduces confusion, cuts support costs, and gives the product a trustworthy feel.',
+    businessBenefits: ['Lower friction', 'Better adoption', 'Higher trust', 'Clearer product value'],
+    technologies: ['Figma', 'Design systems', 'Prototyping', 'User flows', 'Research', 'Accessibility', 'Dashboard layouts', 'Interaction design'],
+    features: [
+      { title: 'Research-led design', copy: 'Use user goals and product behavior to guide layouts instead of relying on guesswork.' },
+      { title: 'Design systems', copy: 'Create consistent rules for spacing, color, states, and reusable interface patterns.' },
+      { title: 'Dashboard structure', copy: 'Organize complex data into screens that feel calmer and easier to read.' },
+      { title: 'Prototype testing', copy: 'Validate flows early so the team can spot friction before development starts.' },
+    ],
+    workflow: [
+      { step: 'Discovery', copy: 'Interview stakeholders and review the business problem behind the interface.' },
+      { step: 'Strategy', copy: 'Define flows, screens, and information architecture that support real user tasks.' },
+      { step: 'Design', copy: 'Create polished screens, states, and components that match the premium brand tone.' },
+      { step: 'Development', copy: 'Hand off or implement the design system into a working product interface.' },
+      { step: 'Testing', copy: 'Check usability, accessibility, and clarity across devices and use cases.' },
+      { step: 'Launch', copy: 'Deliver the final system with a practical handoff for product and engineering teams.' },
+    ],
+    benefits: ['Easier onboarding', 'Lower support friction', 'Better product trust', 'Cleaner data presentation'],
+    caseStudies: [
+      { name: 'Analytics dashboard redesign', result: 'Simplified critical flows and reduced user confusion during onboarding.', context: 'A SaaS product needed a cleaner interface for complex reporting.' },
+      { name: 'Operations portal system', result: 'Improved task completion by reworking hierarchy and state feedback.', context: 'An internal tool needed a calmer and more organized user journey.' },
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1559028012-481c04fa702d?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?auto=format&fit=crop&w=1200&q=80',
+    ],
+    pricing: [
+      { name: 'Starter', price: '$3,000', timeline: '2-3 weeks', support: '7 days support', features: ['Key screen redesign', 'Wireframes', 'Basic prototype', 'Design direction'] },
+      { name: 'Professional', price: '$5,800', timeline: '4-6 weeks', support: '21 days support', featured: true, features: ['Design system', 'User flows', 'Dashboard screens', 'Prototype testing'] },
+      { name: 'Enterprise', price: '$10,500+', timeline: '6-8 weeks', support: '30 days support', features: ['Research sprint', 'Complex product maps', 'Team handoff', 'Scalable system'] },
+    ],
+    faqs: [
+      { question: 'Do you provide research or only screens?', answer: 'We can include discovery and flow planning so the design is grounded in product needs.' },
+      { question: 'Can the design system be reused later?', answer: 'Yes. The output is structured to support future screens and product growth.' },
+      { question: 'Is this suitable for dashboards?', answer: 'Yes. Dashboard and admin interfaces are a major part of this service.' },
+      { question: 'Can you work with developers?', answer: 'Yes. We can hand off, collaborate, or implement directly in code.' },
+    ],
+    testimonials: [
+      { name: 'Meera Iqbal', company: 'MetricFlow', quote: 'The interface became much easier for our team to explain and for users to trust.' },
+      { name: 'Sahil Verma', company: 'OpsGrid', quote: 'The design system saved us time on every new screen after launch.' },
+    ],
+  }),
+  'video-editing': buildServicePage('video-editing', {
+    heroCopy: 'Produce cinematic edits, reels, startup promos, and motion-led videos that elevate how the brand feels.',
+    overview: 'Video editing helps a business communicate speed, quality, and personality in a format people actually consume. It is ideal for social campaigns, product launches, podcasts, and brand storytelling.',
+    audience: 'Startups, creators, agencies, and service brands that need sharper content and a more premium visual rhythm.',
+    need: 'Well-edited video increases retention, improves perceived quality, and gives campaigns more authority.',
+    businessBenefits: ['Higher watch time', 'Stronger brand recall', 'Better social engagement', 'More polished launches'],
+    technologies: ['Premiere Pro', 'After Effects', 'DaVinci Resolve', 'Motion graphics', 'Sound design', 'Caption systems', 'Color grading', 'Format exports'],
+    features: [
+      { title: 'Cinematic pacing', copy: 'Cuts are shaped to keep attention moving while preserving a premium look and feel.' },
+      { title: 'Motion graphics', copy: 'Titles, callouts, and transitions add clarity without overwhelming the story.' },
+      { title: 'Social formats', copy: 'Deliver vertical, square, and widescreen versions for different campaign channels.' },
+      { title: 'Brand consistency', copy: 'Visual rhythm, typography, and color treatment stay aligned to the brand identity.' },
+    ],
+    workflow: [
+      { step: 'Discovery', copy: 'Understand the campaign goal, audience, and the emotional tone the video should carry.' },
+      { step: 'Strategy', copy: 'Plan the cut structure, pacing, hooks, captions, and deliverable formats.' },
+      { step: 'Design', copy: 'Shape title cards, motion treatments, and brand overlays that feel premium.' },
+      { step: 'Development', copy: 'Edit the footage, color grade it, and assemble the final story beat by beat.' },
+      { step: 'Testing', copy: 'Review sound, rhythm, export quality, and platform-specific playback.' },
+      { step: 'Launch', copy: 'Deliver the final cut set ready for social, product launch, or client presentation.' },
+    ],
+    benefits: ['Better audience retention', 'More premium brand feel', 'Stronger campaign output', 'Ready for multiple platforms'],
+    caseStudies: [
+      { name: 'Startup launch reel', result: 'Created a sharper first impression for a product launch campaign.', context: 'A founder needed a 30-second launch edit for social and sales outreach.' },
+      { name: 'Podcast promo set', result: 'Increased content reuse by turning one recording into many social clips.', context: 'A media team wanted more output from each filming session.' },
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=1200&q=80',
+    ],
+    pricing: [
+      { name: 'Starter', price: '$1,800', timeline: '4-6 days', support: '7 days support', features: ['One hero edit', 'Basic captions', 'Color polish', 'Social-ready export'] },
+      { name: 'Professional', price: '$3,800', timeline: '1-2 weeks', support: '14 days support', featured: true, features: ['Motion graphics', 'Multiple edits', 'Branding overlays', 'Format variations'] },
+      { name: 'Enterprise', price: '$7,000+', timeline: '2-3 weeks', support: '30 days support', features: ['Campaign packages', 'Storyboard support', 'Advanced motion', 'Ongoing content system'] },
+    ],
+    faqs: [
+      { question: 'Can you edit footage we already have?', answer: 'Yes. We can work from existing footage, voiceovers, graphics, or mixed assets.' },
+      { question: 'Do you create captions and motion graphics?', answer: 'Yes. Captions, transitions, and motion overlays are included when needed.' },
+      { question: 'Can the edits be optimized for social?', answer: 'Yes. Deliverables can be adapted for reels, shorts, feed posts, and widescreen use.' },
+      { question: 'Do you handle sound and color?', answer: 'Yes. Sound cleanup and color grading are part of the premium finish.' },
+    ],
+    testimonials: [
+      { name: 'Ishita Rao', company: 'Studio Drift', quote: 'The edits felt clean, cinematic, and much more on-brand than before.' },
+      { name: 'Arjun Patel', company: 'Launchline', quote: 'We got more use out of every shoot because the output was packaged so well.' },
+    ],
+  }),
+  branding: buildServicePage('branding', {
+    heroCopy: 'Create logos, identity systems, typography, and visual language that make businesses feel established and trustworthy.',
+    overview: 'Branding is the foundation of recognition and trust. It shapes how customers perceive quality, maturity, and consistency before they interact with the product or team.',
+    audience: 'Startups, founders, creators, and service businesses that need a sharper identity and clearer market position.',
+    need: 'A coherent brand makes every touchpoint feel intentional, which strengthens trust and improves recall.',
+    businessBenefits: ['Higher credibility', 'Clearer market position', 'Stronger recall', 'More consistent messaging'],
+    technologies: ['Brand strategy', 'Typography', 'Color systems', 'Logo systems', 'Guidelines', 'Tone of voice', 'Launch assets', 'Visual identity'],
+    features: [
+      { title: 'Logo system', copy: 'Primary, secondary, and mark-based versions designed for flexibility across channels.' },
+      { title: 'Typography rules', copy: 'Type choices and hierarchy guidelines that give the brand a consistent tone.' },
+      { title: 'Color systems', copy: 'Balanced palettes built to look premium across screens, print, and campaigns.' },
+      { title: 'Guideline packs', copy: 'Clear usage notes so the brand stays consistent as it grows.' },
+    ],
+    workflow: [
+      { step: 'Discovery', copy: 'Learn the market position, audience expectations, and personality the brand should project.' },
+      { step: 'Strategy', copy: 'Define the visual direction, positioning cues, and the rules that will anchor the identity.' },
+      { step: 'Design', copy: 'Develop logo directions, typography, palette, and supporting brand assets.' },
+      { step: 'Development', copy: 'Package the identity into practical files and reusable systems for the team.' },
+      { step: 'Testing', copy: 'Review usage across web, print, motion, and social formats for consistency.' },
+      { step: 'Launch', copy: 'Deliver the final brand kit ready for rollout across channels and campaigns.' },
+    ],
+    benefits: ['Stronger trust', 'More memorable presence', 'Consistent story', 'Better premium perception'],
+    caseStudies: [
+      { name: 'Studio identity refresh', result: 'Unified the brand across website, content, and launch collateral.', context: 'A creative business needed a more mature identity system.' },
+      { name: 'Startup visual kit', result: 'Helped a new company look established before the first sales meeting.', context: 'A founder wanted a credible brand package for launch.' },
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=1200&q=80',
+    ],
+    pricing: [
+      { name: 'Starter', price: '$2,800', timeline: '1-2 weeks', support: '7 days support', features: ['Logo direction', 'Color palette', 'Typography choice', 'Basic guide'] },
+      { name: 'Professional', price: '$5,000', timeline: '2-4 weeks', support: '21 days support', featured: true, features: ['Full identity system', 'Asset kit', 'Social templates', 'Usage guide'] },
+      { name: 'Enterprise', price: '$9,000+', timeline: '4-6 weeks', support: '30 days support', features: ['Complete brand strategy', 'Campaign system', 'Launch assets', 'Extended guidelines'] },
+    ],
+    faqs: [
+      { question: 'Do you only design logos?', answer: 'No. We build the visual system around the logo so the brand stays consistent everywhere.' },
+      { question: 'Can branding include social assets?', answer: 'Yes. Social templates and launch kits can be included in the package.' },
+      { question: 'Will the brand feel premium?', answer: 'The identity is built around clarity, consistency, and visual discipline.' },
+      { question: 'Can this be used for website redesigns?', answer: 'Yes. Branding is often the first step before a website or product update.' },
+    ],
+    testimonials: [
+      { name: 'Sneha Kapoor', company: 'Nova Studio', quote: 'The new identity made our business feel far more credible in sales conversations.' },
+      { name: 'Daniel Joseph', company: 'Arcline', quote: 'The system gave us a strong visual foundation for everything else we launched.' },
+    ],
+  }),
+  'ai-dashboard-development': buildServicePage('ai-dashboard-development', {
+    heroCopy: 'Deliver AI-enabled dashboards, workflow automation, analytics, and business intelligence tools for modern teams.',
+    overview: 'AI dashboard development is ideal for companies that need smarter workflows, better visibility, and interfaces that help teams act on data quickly.',
+    audience: 'Founders, internal product teams, and AI-enabled businesses building tools for operations, analytics, or customer workflows.',
+    need: 'AI systems are most useful when the interface makes them understandable, reliable, and easy to use.',
+    businessBenefits: ['Automated workflows', 'Smarter decisions', 'Higher productivity', 'Better operational clarity'],
+    technologies: ['React', 'Node.js', 'Analytics', 'AI workflows', 'Automation', 'Charts', 'Role permissions', 'API integrations'],
+    features: [
+      { title: 'AI prompt panels', copy: 'Structured interfaces for prompting, reviewing, and managing AI-assisted tasks.' },
+      { title: 'Usage analytics', copy: 'Track system activity, trends, and usage to support informed decisions.' },
+      { title: 'Workflow automation', copy: 'Reduce manual work with smart routing, status updates, and triggers.' },
+      { title: 'Role-based access', copy: 'Keep sensitive data and admin tools protected with clear user permissions.' },
+    ],
+    workflow: [
+      { step: 'Discovery', copy: 'Identify data sources, operational goals, and the AI actions the product should support.' },
+      { step: 'Strategy', copy: 'Map workflows, access levels, analytics, and how teams will use the dashboard.' },
+      { step: 'Design', copy: 'Create a clean interface for prompts, data views, automations, and alerts.' },
+      { step: 'Development', copy: 'Build the frontend, backend logic, AI hooks, and reporting structure.' },
+      { step: 'Testing', copy: 'Check workflows, accuracy, permission rules, and dashboard clarity before launch.' },
+      { step: 'Launch', copy: 'Deploy the tool and prepare the team for day-one use with confidence.' },
+    ],
+    benefits: ['Faster workflows', 'Smarter reporting', 'Lower manual effort', 'More trustworthy AI usage'],
+    caseStudies: [
+      { name: 'AI support operations hub', result: 'Automated repetitive triage steps and improved response visibility.', context: 'A support team needed a dashboard to manage AI-assisted workflows.' },
+      { name: 'Business intelligence console', result: 'Helped leadership review performance data in one clear place.', context: 'A startup wanted executive-friendly analytics and automation.' },
+    ],
+    gallery: [
+      'https://images.unsplash.com/photo-1516321497487-e288fb19713f?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
+      'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+    ],
+    pricing: [
+      { name: 'Starter', price: '$5,800', timeline: '3-4 weeks', support: '14 days support', features: ['Core dashboard', 'Basic analytics', 'One workflow', 'Clean UI'] },
+      { name: 'Professional', price: '$9,500', timeline: '5-7 weeks', support: '30 days support', featured: true, features: ['Automation layer', 'Role permissions', 'AI panels', 'Reporting views'] },
+      { name: 'Enterprise', price: '$18,000+', timeline: '8-12 weeks', support: '60 days support', features: ['Complex workflows', 'Advanced analytics', 'Multiple roles', 'Custom integrations'] },
+    ],
+    faqs: [
+      { question: 'Can you connect AI tools to our workflow?', answer: 'Yes. We can design the interface around your AI and automation needs.' },
+      { question: 'Is this only for internal teams?', answer: 'No. It can also support customer-facing AI products and admin systems.' },
+      { question: 'Do dashboards include analytics?', answer: 'Yes. Reporting and usage insights are a core part of the service.' },
+      { question: 'Can it handle permissions?', answer: 'Yes. Role-based access and safe workflow handling are included in the architecture.' },
+    ],
+    testimonials: [
+      { name: 'Ritika Jain', company: 'AI Ops Co.', quote: 'The dashboard made the AI workflow feel much more usable and trustworthy.' },
+      { name: 'Owen Scott', company: 'IntelFlow', quote: 'We finally had one place to see automation, metrics, and team activity.' },
+    ],
+  }),
+};
+
+export const getServiceDetail = (slug) => serviceDetails[slug] || null;

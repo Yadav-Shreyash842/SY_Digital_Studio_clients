@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
-import { FaArrowRight, FaBarsProgress, FaEnvelope, FaGlobe, FaLocationDot, FaPlay, FaQuoteLeft, FaStar, FaWhatsapp, FaXmark } from 'react-icons/fa6';
-import { Link } from 'react-router-dom';
+import { FaArrowRight, FaBarsProgress, FaEnvelope, FaGlobe, FaLocationDot, FaPlay, FaQuoteLeft, FaStar, FaWhatsapp } from 'react-icons/fa6';
+import { Link, useNavigate } from 'react-router-dom';
 import { AnimatedNumber, FadeIn, GlassCard, SectionHeading } from '../components/Sections.jsx';
+import BlogCard from '../components/BlogCard.jsx';
 import {
   aboutBullets,
   blogPosts,
@@ -21,6 +22,7 @@ import {
   workflow,
 } from '../data/siteContent.js';
 import { api } from '../lib/api.js';
+import { normalizeBlogList } from '../lib/blog.js';
 import heroVideo from '../../3254066-uhd_3840_2160_25fps.mp4';
 
 const fallbackSite = {
@@ -33,7 +35,7 @@ const fallbackSite = {
 
 export default function HomePage() {
   const [site, setSite] = useState(fallbackSite);
-  const [activeService, setActiveService] = useState(null);
+  const navigate = useNavigate();
   const heroVideoUrl = import.meta.env.VITE_HERO_VIDEO_URL || heroVideo;
 
   useEffect(() => {
@@ -41,6 +43,9 @@ export default function HomePage() {
   }, []);
 
   const hero = useMemo(() => site.hero || fallbackSite.hero, [site]);
+  const blogEntries = useMemo(() => normalizeBlogList(site.blogs?.length ? site.blogs : blogPosts), [site.blogs]);
+
+  const openServicePage = (service) => navigate(`/services/${service.slug}`);
 
   return (
     <div className="relative overflow-hidden">
@@ -199,37 +204,76 @@ export default function HomePage() {
             {services.map((service, index) => (
               <FadeIn key={service.title} delay={index * 0.06}>
                 <GlassCard className="overflow-hidden rounded-[1.85rem]">
-                  <div className="grid lg:grid-cols-[0.95fr_1.05fr]">
-                    <img src={service.image} alt={service.title} className="h-64 w-full object-cover sm:h-72 lg:h-full lg:min-h-72" />
+                  <div
+                    className="grid cursor-pointer lg:grid-cols-[0.95fr_1.05fr]"
+                    role="link"
+                    tabIndex={0}
+                    onClick={() => openServicePage(service)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        openServicePage(service);
+                      }
+                    }}
+                    aria-label={`Open ${service.title} service details`}
+                  >
+                    <div className="relative">
+                      <img src={service.image} alt={service.title} className="h-64 w-full object-cover sm:h-72 lg:h-full lg:min-h-72" />
+                      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.02),rgba(2,6,23,0.7))]" />
+                      <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+                        <span className="chip border-white/15 bg-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.3em] text-cyan-100">{service.statusBadge}</span>
+                        {service.trustLabels.slice(0, 1).map((label) => (
+                          <span key={label} className="chip border-white/15 bg-black/30 px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-white">{label}</span>
+                        ))}
+                      </div>
+                    </div>
                     <div className="p-5 sm:p-6 lg:p-7">
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <service.icon className="text-2xl text-cyan-300" />
-                          <h3 className="mt-4 text-2xl font-semibold text-white">{service.title}</h3>
+                          <service.icon className="text-3xl text-cyan-300" />
+                          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-white">{service.title}</h3>
+                          <p className="mt-2 text-sm leading-7 text-slate-300">{service.microcopy}</p>
                         </div>
                         <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white">{service.price}</div>
                       </div>
-                      <p className="mt-4 text-sm leading-7 text-slate-300">{service.benefits}</p>
+                      <p className="mt-4 text-sm leading-7 text-slate-300">{service.outcome}</p>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        <span className="chip border-white/10 bg-white/5 text-xs text-white">{service.audience}</span>
+                        <span className="chip border-white/10 bg-white/5 text-xs text-white">{service.delivery}</span>
+                        <span className="chip border-white/10 bg-white/5 text-xs text-white">{service.support}</span>
+                      </div>
+                      <div className="mt-4 flex flex-wrap gap-2">
+                        {service.trustLabels.map((label) => (
+                          <span key={label} className="chip text-[0.65rem] uppercase tracking-[0.22em] text-cyan-100">{label}</span>
+                        ))}
+                      </div>
+                      <div className="mt-4 rounded-3xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
+                        <p className="text-xs uppercase tracking-[0.3em] text-cyan-300/80">Who this is for</p>
+                        <p className="mt-2 text-white">{service.audience}</p>
+                      </div>
                       <div className="mt-5 grid gap-5 md:grid-cols-2">
                         <div>
                           <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Technologies</h4>
                           <div className="mt-3 flex flex-wrap gap-2">{service.technologies.map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
                         </div>
                         <div>
-                          <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Process</h4>
-                          <div className="mt-3 flex flex-wrap gap-2">{service.process.map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
+                          <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Mini process</h4>
+                          <div className="mt-3 flex flex-wrap gap-2">{service.miniProcess.map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
                         </div>
+                      </div>
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {service.process.map((item) => <span key={item} className="chip border-white/10 bg-white/5 text-[0.65rem] uppercase tracking-[0.25em] text-slate-100">{item}</span>)}
                       </div>
                       <div className="mt-5">
                         <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Features</h4>
                         <div className="mt-3 flex flex-wrap gap-2">{service.features.map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
                       </div>
                       <div className="mt-6 flex flex-wrap gap-3">
-                        <button type="button" onClick={() => setActiveService(service)} className="agency-button text-sm">
-                          View details
+                        <button type="button" onClick={(event) => { event.stopPropagation(); openServicePage(service); }} className="agency-button text-sm shadow-[0_0_30px_rgba(34,211,238,0.18)]">
+                          Explore Service
                         </button>
-                        <a href="#contact" className="chip px-4 py-3 text-sm font-semibold text-white">
-                          Request quote
+                        <a href="#contact" onClick={(event) => event.stopPropagation()} className="chip px-4 py-3 text-sm font-semibold text-white shadow-[0_0_22px_rgba(255,255,255,0.08)]">
+                          Get Custom Proposal
                         </a>
                       </div>
                     </div>
@@ -480,66 +524,12 @@ export default function HomePage() {
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Insights" title="Agency blog cards for strategy, design, and business growth." copy="Use these posts to establish expertise and build trust with potential clients before they contact the agency." />
           <div className="grid gap-6 md:grid-cols-3">
-            {blogPosts.map((post, index) => (
-              <FadeIn key={post.title} delay={index * 0.05}>
-                <GlassCard className="overflow-hidden rounded-[1.65rem]">
-                  <img src={post.image} alt={post.title} className="h-56 w-full object-cover" />
-                  <div className="p-6">
-                    <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-cyan-300/80">
-                      <span>{post.category}</span>
-                      <span>{post.readTime}</span>
-                    </div>
-                    <h3 className="mt-4 text-xl font-semibold text-white">{post.title}</h3>
-                  </div>
-                </GlassCard>
-              </FadeIn>
+            {blogEntries.map((post, index) => (
+              <BlogCard key={post.slug || post.title} post={post} delay={index * 0.05} />
             ))}
           </div>
         </div>
       </section>
-
-      {activeService ? (
-        <div className="fixed inset-0 z-60 flex items-center justify-center bg-slate-950/70 px-4 py-8 backdrop-blur-md" role="dialog" aria-modal="true" onClick={() => setActiveService(null)}>
-          <div className="relative w-full max-w-4xl" onClick={(event) => event.stopPropagation()}>
-            <GlassCard className="relative max-h-[85vh] overflow-y-auto rounded-4xl p-6 sm:p-8">
-              <button onClick={() => setActiveService(null)} className="absolute right-4 top-4 rounded-full border border-white/10 bg-white/5 p-2 text-white transition hover:bg-white/10" aria-label="Close service details">
-                <FaXmark />
-              </button>
-              <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
-                <img src={activeService.image} alt={activeService.title} className="h-72 w-full rounded-3xl object-cover" />
-                <div>
-                  <p className="text-xs uppercase tracking-[0.35em] text-cyan-300/80">Service Detail</p>
-                  <h3 className="mt-3 text-3xl font-semibold text-white">{activeService.title}</h3>
-                  <p className="mt-3 text-lg text-cyan-200">{activeService.price}</p>
-                  <p className="mt-4 text-sm leading-7 text-slate-300">{activeService.benefits}</p>
-
-                  <div className="mt-6 grid gap-5 md:grid-cols-2">
-                    <div>
-                      <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Technologies</h4>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {activeService.technologies.map((item) => <span key={item} className="chip text-xs">{item}</span>)}
-                      </div>
-                    </div>
-                    <div>
-                      <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Process</h4>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {activeService.process.map((item) => <span key={item} className="chip text-xs">{item}</span>)}
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="mt-6">
-                    <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Features</h4>
-                    <div className="mt-3 flex flex-wrap gap-2">
-                      {activeService.features.map((item) => <span key={item} className="chip text-xs">{item}</span>)}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </GlassCard>
-          </div>
-        </div>
-      ) : null}
 
       <section id="contact" className="px-4 py-20 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_0.95fr]">
@@ -563,7 +553,7 @@ export default function HomePage() {
                 </div>
               </div>
               <div className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-3">
-                <iframe title="SY Digital Studio Map" className="h-72 w-full rounded-[1.2rem] border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=San%20Francisco&output=embed" />
+                <iframe title="SY Digital Studio Map" className="h-72 w-full rounded-[1.2rem] border-0" loading="lazy" referrerPolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Office%20104%2C%20105%2C%20DK%20Nagar%2C%20Godadara%2C%20Surat%2C%20Gujarat%2C%20India&z=16&output=embed" />
               </div>
             </GlassCard>
           </FadeIn>

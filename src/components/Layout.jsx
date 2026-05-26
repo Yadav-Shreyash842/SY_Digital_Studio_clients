@@ -3,7 +3,7 @@ import { motion } from 'framer-motion';
 import { FaArrowRight, FaBolt, FaBars, FaEnvelope, FaPhone, FaWhatsapp, FaXmark } from 'react-icons/fa6';
 import { useState } from 'react';
 import { useAuth } from '../context/AuthContext.jsx';
-import { contactChannels, navItems, socialLinks } from '../data/siteContent.js';
+import { contactChannels, navItems, services, socialLinks } from '../data/siteContent.js';
 
 export const SiteLayout = ({ children }) => {
   const [open, setOpen] = useState(false);
@@ -97,7 +97,7 @@ export const SiteLayout = ({ children }) => {
             </p>
             <div className="mt-6 flex flex-wrap gap-3 text-sm text-slate-300">
               <span className="chip"><FaEnvelope /> {contactChannels.email}</span>
-              <span className="chip"><FaPhone /> {contactChannels.phone}</span>
+              <a href={contactChannels.whatsapp} target="_blank" rel="noreferrer" className="chip"><FaPhone /> {contactChannels.phone}</a>
             </div>
             <div className="mt-6 rounded-3xl border border-white/10 bg-white/5 p-5">
               <p className="text-xs uppercase tracking-[0.35em] text-cyan-300/80">Newsletter</p>
@@ -123,10 +123,10 @@ export const SiteLayout = ({ children }) => {
           <div>
             <h3 className="text-sm uppercase tracking-[0.35em] text-cyan-300/80">Services</h3>
             <div className="mt-4 grid gap-3 text-sm text-slate-300">
-              {['MERN Stack Development', 'React Development', 'UI/UX Design', 'Branding', 'Video Editing'].map((service) => (
-                <span key={service} className="transition hover:text-white">
-                  {service}
-                </span>
+              {services.slice(0, 5).map((service) => (
+                <Link key={service.title} to={`/services/${service.slug}`} className="transition hover:text-white">
+                  {service.title}
+                </Link>
               ))}
             </div>
           </div>
