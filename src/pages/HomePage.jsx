@@ -199,13 +199,13 @@ export default function HomePage() {
 
       <section id="services" className="px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Services" title="A premium catalog of development, design, editing, and brand systems." copy="Each service card includes features, process, pricing, benefits, and the technologies used to deliver it." />
-          <div className="grid gap-6 xl:grid-cols-2">
+          <SectionHeading eyebrow="Services" title="A premium catalog of development, design, editing, and brand systems." copy="Compact service cards with clear value and direct next steps." />
+          <div className="grid gap-4 xl:auto-rows-fr xl:grid-cols-2">
             {services.map((service, index) => (
-              <FadeIn key={service.title} delay={index * 0.06}>
-                <GlassCard className="overflow-hidden rounded-[1.85rem]">
+              <FadeIn key={service.title} delay={index * 0.06} className="h-full">
+                <GlassCard className="h-full overflow-hidden rounded-[1.85rem]">
                   <div
-                    className="grid cursor-pointer lg:grid-cols-[0.95fr_1.05fr]"
+                    className="grid h-full cursor-pointer lg:grid-cols-[0.95fr_1.05fr]"
                     role="link"
                     tabIndex={0}
                     onClick={() => openServicePage(service)}
@@ -218,61 +218,30 @@ export default function HomePage() {
                     aria-label={`Open ${service.title} service details`}
                   >
                     <div className="relative">
-                      <img src={service.image} alt={service.title} className="h-64 w-full object-cover sm:h-72 lg:h-full lg:min-h-72" />
+                      <img src={service.image} alt={service.title} className="h-44 w-full object-cover sm:h-52 lg:h-full lg:min-h-56" />
                       <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(2,6,23,0.02),rgba(2,6,23,0.7))]" />
                       <div className="absolute left-4 top-4 flex flex-wrap gap-2">
-                        <span className="chip border-white/15 bg-white/10 px-3 py-1 text-[0.65rem] uppercase tracking-[0.3em] text-cyan-100">{service.statusBadge}</span>
-                        {service.trustLabels.slice(0, 1).map((label) => (
-                          <span key={label} className="chip border-white/15 bg-black/30 px-3 py-1 text-[0.65rem] uppercase tracking-[0.28em] text-white">{label}</span>
-                        ))}
+                        <span className="chip border-white/15 bg-white/10 px-2.5 py-1 text-[0.6rem] uppercase tracking-[0.28em] text-cyan-100">{service.statusBadge}</span>
                       </div>
                     </div>
-                    <div className="p-5 sm:p-6 lg:p-7">
+                    <div className="flex h-full flex-col p-4 sm:p-4 lg:p-4">
                       <div className="flex items-start justify-between gap-4">
                         <div>
-                          <service.icon className="text-3xl text-cyan-300" />
-                          <h3 className="mt-4 text-3xl font-semibold tracking-tight text-white">{service.title}</h3>
-                          <p className="mt-2 text-sm leading-7 text-slate-300">{service.microcopy}</p>
+                          <service.icon className="text-xl text-cyan-300" />
+                          <h3 className="mt-2 text-xl font-semibold tracking-tight text-white">{service.title}</h3>
                         </div>
-                        <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-white">{service.price}</div>
+                        <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white">{service.price}</div>
                       </div>
-                      <p className="mt-4 text-sm leading-7 text-slate-300">{service.outcome}</p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        <span className="chip border-white/10 bg-white/5 text-xs text-white">{service.audience}</span>
+                      <p className="mt-2 text-xs leading-6 text-slate-300">{service.outcome}</p>
+                      <div className="mt-3 flex flex-wrap gap-2">
                         <span className="chip border-white/10 bg-white/5 text-xs text-white">{service.delivery}</span>
-                        <span className="chip border-white/10 bg-white/5 text-xs text-white">{service.support}</span>
+                        {service.trustLabels.slice(0, 1).map((label) => <span key={label} className="chip border-white/10 bg-white/5 text-xs text-white">{label}</span>)}
                       </div>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {service.trustLabels.map((label) => (
-                          <span key={label} className="chip text-[0.65rem] uppercase tracking-[0.22em] text-cyan-100">{label}</span>
-                        ))}
-                      </div>
-                      <div className="mt-4 rounded-3xl border border-white/10 bg-white/5 p-4 text-sm text-slate-300">
-                        <p className="text-xs uppercase tracking-[0.3em] text-cyan-300/80">Who this is for</p>
-                        <p className="mt-2 text-white">{service.audience}</p>
-                      </div>
-                      <div className="mt-5 grid gap-5 md:grid-cols-2">
-                        <div>
-                          <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Technologies</h4>
-                          <div className="mt-3 flex flex-wrap gap-2">{service.technologies.map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
-                        </div>
-                        <div>
-                          <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Mini process</h4>
-                          <div className="mt-3 flex flex-wrap gap-2">{service.miniProcess.map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
-                        </div>
-                      </div>
-                      <div className="mt-5 flex flex-wrap gap-2">
-                        {service.process.map((item) => <span key={item} className="chip border-white/10 bg-white/5 text-[0.65rem] uppercase tracking-[0.25em] text-slate-100">{item}</span>)}
-                      </div>
-                      <div className="mt-5">
-                        <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Features</h4>
-                        <div className="mt-3 flex flex-wrap gap-2">{service.features.map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
-                      </div>
-                      <div className="mt-6 flex flex-wrap gap-3">
+                      <div className="mt-4 flex flex-wrap gap-2 pt-1">
                         <button type="button" onClick={(event) => { event.stopPropagation(); openServicePage(service); }} className="agency-button text-sm shadow-[0_0_30px_rgba(34,211,238,0.18)]">
                           Explore Service
                         </button>
-                        <a href="#contact" onClick={(event) => event.stopPropagation()} className="chip px-4 py-3 text-sm font-semibold text-white shadow-[0_0_22px_rgba(255,255,255,0.08)]">
+                        <a href="#contact" onClick={(event) => event.stopPropagation()} className="chip px-3 py-2 text-xs font-semibold text-white shadow-[0_0_22px_rgba(255,255,255,0.08)]">
                           Get Custom Proposal
                         </a>
                       </div>
