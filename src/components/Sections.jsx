@@ -4,18 +4,18 @@ import { useEffect, useRef, useState } from 'react';
 export const SectionHeading = ({ eyebrow, title, copy }) => (
   <div className="mx-auto mb-12 max-w-3xl text-center">
     <p className="section-eyebrow">{eyebrow}</p>
-    <h2 className="mt-3 text-3xl font-semibold text-white md:text-5xl">{title}</h2>
-    <p className="mt-4 text-slate-300">{copy}</p>
+    <h2 className="mt-3 text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl xl:text-6xl">{title}</h2>
+    <p className="mx-auto mt-4 max-w-2xl text-base leading-8 text-slate-300 md:text-lg">{copy}</p>
   </div>
 );
 
 export const FadeIn = ({ children, delay = 0, className = '' }) => (
-  <motion.div className={className} initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.7, delay, ease: 'easeOut' }}>
+  <motion.div className={className} initial={{ opacity: 0, y: 28, scale: 0.985 }} whileInView={{ opacity: 1, y: 0, scale: 1 }} viewport={{ once: true, margin: '-80px' }} transition={{ duration: 0.72, delay, ease: [0.22, 1, 0.36, 1] }}>
     {children}
   </motion.div>
 );
 
-export const GlassCard = ({ children, className = '' }) => <div className={`glass-card ${className}`}>{children}</div>;
+export const GlassCard = ({ children, className = '' }) => <div className={`glass-card transition-transform duration-300 ease-out hover:-translate-y-0.5 ${className}`}>{children}</div>;
 
 export const AnimatedNumber = ({ value, suffix = '' }) => {
   const ref = useRef(null);

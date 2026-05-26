@@ -48,13 +48,15 @@ export default function HomePage() {
   const openServicePage = (service) => navigate(`/services/${service.slug}`);
 
   return (
-    <div className="relative overflow-hidden">
-      <section id="hero" className="relative isolate min-h-svh overflow-hidden px-4 pb-12 pt-20 sm:pb-20 sm:pt-28 lg:px-8 lg:pt-14">
+    <div className="site-canvas relative overflow-hidden">
+      <section id="hero" className="flow-section relative isolate min-h-svh overflow-hidden px-4 pb-12 pt-20 sm:pb-20 sm:pt-28 lg:px-8 lg:pt-14">
         <video className="hero-video absolute inset-0 hidden h-full w-full object-cover object-center md:block" autoPlay muted loop playsInline poster="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80">
           <source src={heroVideoUrl} type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/55" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.08),transparent_30%),radial-gradient(circle_at_right,rgba(14,165,233,0.14),transparent_26%)]" />
+        <div className="hero-glow left" />
+        <div className="hero-glow right" />
 
         <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center lg:gap-14">
           <FadeIn>
@@ -62,21 +64,26 @@ export default function HomePage() {
               <FaBarsProgress />
               {hero.label}
             </div>
-            <h1 className="mt-6 max-w-[12ch] text-3xl font-semibold tracking-tight text-white leading-[1.05] sm:max-w-4xl sm:text-5xl md:text-6xl lg:text-7xl">
+            <h1 className="mt-6 max-w-[13ch] text-4xl font-semibold tracking-tight text-white leading-[1.02] sm:max-w-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-[5.25rem]">
               {hero.title}
             </h1>
-            <p className="mt-5 max-w-2xl text-base leading-7 text-slate-100/90 sm:text-lg sm:leading-8">{hero.copy}</p>
+            <p className="editorial-copy mt-5 max-w-2xl text-base text-slate-100/90 sm:text-lg">{hero.copy}</p>
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
               <Link to="/signup" className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-950 transition hover:scale-105 sm:w-auto">
-                Hire Us <FaArrowRight />
+                Start Premium Project <FaArrowRight />
               </Link>
               <a href="#contact" className="inline-flex w-full items-center justify-center gap-2 rounded-full border border-white/30 bg-white/10 px-6 py-3 font-semibold text-white backdrop-blur-md transition hover:bg-white/20 sm:w-auto">
-                Book Consultation
+                Book Strategy Call
               </a>
+            </div>
+            <div className="mt-5 flex flex-wrap gap-2 text-xs uppercase tracking-[0.24em] text-slate-100/85">
+              <span className="chip border-white/20 bg-white/10">Founder-ready delivery</span>
+              <span className="chip border-white/20 bg-white/10">Structured weekly updates</span>
+              <span className="chip border-white/20 bg-white/10">Launch support included</span>
             </div>
             <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
               {heroStats.map((item) => (
-                <div key={item.label} className="rounded-3xl border border-white/15 bg-black/25 p-4 backdrop-blur-md">
+                <div key={item.label} className="rounded-3xl border border-white/15 bg-black/30 p-4 shadow-[0_14px_45px_rgba(2,6,23,0.4)] backdrop-blur-md">
                   <p className="text-sm text-slate-200/80">{item.label}</p>
                   <p className="mt-2 text-3xl font-semibold text-white"><AnimatedNumber value={item.value} suffix={item.suffix} /></p>
                 </div>
@@ -136,7 +143,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="about" className="px-4 py-20 lg:px-8">
+      <div className="cinematic-divider mx-auto max-w-7xl" />
+
+      <section id="about" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="About Agency" title="A creative technology studio with strategy, design, and execution under one roof." copy="We help modern companies present themselves with the confidence of a category leader and the clarity of a product company." />
           <div className="grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -170,7 +179,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="team" className="px-4 py-20 lg:px-8">
+      <section id="team" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Team Members" title="A multi-discipline crew that works like a real studio." copy="Every card includes role, expertise, and social presence so clients can see the people behind the work." />
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-3">
@@ -197,13 +206,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="services" className="px-4 py-20 lg:px-8">
+      <section id="services" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Services" title="A premium catalog of development, design, editing, and brand systems." copy="Compact service cards with clear value and direct next steps." />
+          <SectionHeading eyebrow="Services" title="Premium business solutions, not generic freelancer tasks." copy="Each service is positioned for trust, conversion quality, and startup-to-enterprise delivery confidence." />
           <div className="grid gap-4 xl:auto-rows-fr xl:grid-cols-2">
             {services.map((service, index) => (
               <FadeIn key={service.title} delay={index * 0.06} className="h-full">
-                <GlassCard className="h-full overflow-hidden rounded-[1.85rem]">
+                <motion.div whileHover={{ y: -4, scale: 1.006 }} transition={{ duration: 0.3, ease: 'easeOut' }} className="h-full">
+                  <GlassCard className="h-full overflow-hidden rounded-[1.85rem]">
                   <div
                     className="grid h-full cursor-pointer lg:grid-cols-[0.95fr_1.05fr]"
                     role="link"
@@ -233,9 +243,11 @@ export default function HomePage() {
                         <div className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-xs text-white">{service.price}</div>
                       </div>
                       <p className="mt-2 text-xs leading-6 text-slate-300">{service.outcome}</p>
+                      <p className="mt-2 text-xs text-cyan-100/90">{service.microcopy}</p>
                       <div className="mt-3 flex flex-wrap gap-2">
                         <span className="chip border-white/10 bg-white/5 text-xs text-white">{service.delivery}</span>
                         {service.trustLabels.slice(0, 1).map((label) => <span key={label} className="chip border-white/10 bg-white/5 text-xs text-white">{label}</span>)}
+                        <span className="chip border-white/10 bg-white/5 text-xs text-white">{service.support}</span>
                       </div>
                       <div className="mt-4 flex flex-wrap gap-2 pt-1">
                         <button type="button" onClick={(event) => { event.stopPropagation(); openServicePage(service); }} className="agency-button text-sm shadow-[0_0_30px_rgba(34,211,238,0.18)]">
@@ -247,20 +259,24 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                </GlassCard>
+                  </GlassCard>
+                </motion.div>
               </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="projects" className="px-4 py-20 lg:px-8">
+      <div className="cinematic-divider mx-auto max-w-7xl" />
+
+      <section id="projects" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Featured Projects" title="Agency-style case studies with visuals, outcomes, and social proof." copy="Compact project cards with clear business impact and a direct live-demo action." />
           <div className="grid gap-4">
             {featuredProjects.map((project, index) => (
               <FadeIn key={project.name} delay={index * 0.07}>
-                <GlassCard className="overflow-hidden rounded-[1.9rem]">
+                <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.28, ease: 'easeOut' }}>
+                  <GlassCard className="overflow-hidden rounded-[1.9rem]">
                   <div className="grid lg:grid-cols-[1fr_1fr]">
                     <div className="grid grid-cols-2 gap-2 p-2.5">
                       {Array.from({ length: 4 }).map((_, imageIndex) => {
@@ -282,7 +298,7 @@ export default function HomePage() {
                         <span className="chip">{project.duration}</span>
                       </div>
                       <h3 className="mt-3 text-2xl font-semibold text-white">{project.name}</h3>
-                      <p className="mt-3 text-xs leading-6 text-slate-300">{project.overview}</p>
+                      <p className="editorial-copy mt-3 text-xs text-slate-300">{project.overview}</p>
                       <div className="mt-4 grid gap-4 md:grid-cols-2">
                         <div>
                           <h4 className="text-xs uppercase tracking-[0.25em] text-cyan-300/80">Technologies</h4>
@@ -303,14 +319,15 @@ export default function HomePage() {
                       </a>
                     </div>
                   </div>
-                </GlassCard>
+                  </GlassCard>
+                </motion.div>
               </FadeIn>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="stats" className="px-4 py-20 lg:px-8">
+      <section id="stats" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 xl:grid-cols-5">
           {[
             ['Projects Completed', 148],
@@ -329,9 +346,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="social-proof" className="px-4 py-10 lg:px-8">
+      <section id="social-proof" className="flow-section px-4 py-10 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Social Proof" title="Trust signals that help clients, founders, and recruiters evaluate the studio quickly." copy="Keep the pitch polished with clear stack depth, delivery discipline, and startup-ready indicators." />
+          <SectionHeading eyebrow="Social Proof" title="Trust signals that lower risk for founders and teams." copy="Operational clarity, communication cadence, and delivery systems make the agency feel established before the first call." />
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {socialProof.map((item, index) => (
               <FadeIn key={item.label} delay={index * 0.05}>
@@ -342,10 +359,19 @@ export default function HomePage() {
               </FadeIn>
             ))}
           </div>
+          <FadeIn className="mt-6">
+            <GlassCard className="rounded-3xl p-6 sm:p-7">
+              <div className="grid gap-4 text-sm text-slate-300 md:grid-cols-3">
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-xs uppercase tracking-[0.3em] text-cyan-300/80">Response SLA</p><p className="mt-2 text-white">Replies within 24 hours</p></div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-xs uppercase tracking-[0.3em] text-cyan-300/80">Delivery System</p><p className="mt-2 text-white">Weekly milestones + review loop</p></div>
+                <div className="rounded-2xl border border-white/10 bg-white/5 p-4"><p className="text-xs uppercase tracking-[0.3em] text-cyan-300/80">Timeline Confidence</p><p className="mt-2 text-white">Clear scope and launch windows</p></div>
+              </div>
+            </GlassCard>
+          </FadeIn>
         </div>
       </section>
 
-      <section id="reviews" className="px-4 py-20 lg:px-8">
+      <section id="reviews" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Testimonials" title="Client reviews with company names, ratings, and project context." copy="Glassmorphism cards and motion keep this section credible without losing the premium feel." />
           <div className="flex gap-6 overflow-x-auto pb-2 snap-x snap-mandatory">
@@ -370,7 +396,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="recruiter" className="px-4 py-20 lg:px-8">
+      <section id="recruiter" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Recruiter View" title={recruiterProfile.title} copy={recruiterProfile.summary} />
           <div className="grid gap-6 lg:grid-cols-[1fr_1fr]">
@@ -440,24 +466,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="workflow" className="px-4 py-20 lg:px-8">
+      <section id="workflow" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Process" title="Discovery to launch in six clean, accountable steps." copy="A modern workflow that keeps clients informed and the delivery process premium, transparent, and efficient." />
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-6">
-            {workflow.map((item, index) => (
-              <FadeIn key={item.step} delay={index * 0.05}>
-                <GlassCard className="h-full rounded-3xl p-5">
-                  <p className="text-xs uppercase tracking-[0.35em] text-cyan-300/80">0{index + 1}</p>
-                  <h3 className="mt-3 text-xl font-semibold text-white">{item.step}</h3>
-                  <p className="mt-3 text-sm leading-7 text-slate-300">{item.copy}</p>
-                </GlassCard>
-              </FadeIn>
-            ))}
+          <SectionHeading eyebrow="Process" title="A cinematic workflow from strategy to launch." copy="Built like a product studio: visible milestones, premium communication, and accountable delivery." />
+          <div className="grid gap-6 lg:grid-cols-[0.78fr_1.22fr]">
+            <FadeIn>
+              <GlassCard className="sticky top-24 rounded-[1.75rem] p-6 sm:p-7">
+                <p className="section-eyebrow">Delivery System</p>
+                <h3 className="mt-3 text-2xl font-semibold text-white">Clients always know what is next.</h3>
+                <p className="editorial-copy mt-4 text-sm text-slate-300">Every project runs through a structured operating rhythm: kickoff clarity, weekly momentum, and launch-level quality checks.</p>
+                <div className="mt-6 space-y-3 text-sm text-slate-200">
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">Dedicated owner for each milestone</div>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">Proof-of-progress updates every week</div>
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-4">Launch checklist + post-go-live support</div>
+                </div>
+              </GlassCard>
+            </FadeIn>
+            <div className="timeline-rail space-y-4 pl-8">
+              {workflow.map((item, index) => (
+                <FadeIn key={item.step} delay={index * 0.05}>
+                  <GlassCard className="relative h-full rounded-3xl p-5">
+                    <span className="absolute left-[-1.92rem] top-8 h-3.5 w-3.5 rounded-full border border-cyan-200/40 bg-cyan-300/80" />
+                    <p className="text-xs uppercase tracking-[0.35em] text-cyan-300/80">0{index + 1}</p>
+                    <h3 className="mt-3 text-xl font-semibold text-white">{item.step}</h3>
+                    <p className="mt-3 text-sm leading-7 text-slate-300">{item.copy}</p>
+                  </GlassCard>
+                </FadeIn>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="pricing" className="px-4 py-20 lg:px-8">
+      <section id="pricing" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Pricing" title="SaaS-style packages with scope, support, and delivery clarity." copy="Designed to help clients move from discovery to engagement without losing confidence in the process." />
           <div className="grid gap-6 xl:grid-cols-3">
@@ -485,7 +526,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="gallery" className="px-4 py-20 lg:px-8">
+      <section id="gallery" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <SectionHeading eyebrow="Gallery" title="Studio visuals, project work, and creative process imagery." copy="Animated image grids make the brand feel active and production-ready without overwhelming the layout." />
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -500,9 +541,18 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="blog" className="px-4 py-20 lg:px-8">
+      <section id="blog" className="flow-section px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Insights" title="Agency blog cards for strategy, design, and business growth." copy="Use these posts to establish expertise and build trust with potential clients before they contact the agency." />
+          <SectionHeading eyebrow="Insights" title="Editorial knowledge hub for founders, teams, and decision-makers." copy="Category-led insights build authority before the first sales conversation and make the agency feel strategic, not transactional." />
+          <FadeIn className="mb-8">
+            <div className="flex flex-wrap items-center justify-center gap-2 text-xs uppercase tracking-[0.24em] text-slate-200/90">
+              {['Strategy', 'Product', 'Design', 'Development', 'Branding'].map((category) => (
+                <Link key={category} to={`/insights/${category.toLowerCase()}`} className="chip border-white/10 bg-white/5 transition hover:bg-white/10">
+                  {category}
+                </Link>
+              ))}
+            </div>
+          </FadeIn>
           <div className="grid gap-6 md:grid-cols-3">
             {blogEntries.map((post, index) => (
               <BlogCard key={post.slug || post.title} post={post} delay={index * 0.05} />
@@ -511,7 +561,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section id="contact" className="px-4 py-20 lg:px-8">
+      <section id="contact" className="flow-section px-4 py-20 lg:px-8">
           <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1fr_0.95fr]">
           <FadeIn>
             <GlassCard className="rounded-[1.8rem] p-5 sm:p-8">
@@ -542,6 +592,10 @@ export default function HomePage() {
             <GlassCard className="rounded-[1.8rem] p-5 sm:p-8">
               <p className="section-eyebrow">Lead Form</p>
               <h3 className="mt-3 text-3xl font-semibold text-white">Submit a project request</h3>
+              <div className="mt-4 flex flex-wrap gap-2 text-xs uppercase tracking-[0.22em] text-slate-200/90">
+                <span className="chip border-white/10 bg-white/5">24h response promise</span>
+                <span className="chip border-white/10 bg-white/5">Founder-friendly scoping</span>
+              </div>
               <form className="mt-8 space-y-4" onSubmit={(event) => event.preventDefault()}>
                 {['Full name', 'Email address', 'Company', 'Project brief'].map((label, index) => (
                   <input key={label} placeholder={label} className="input-field w-full" />
@@ -549,6 +603,10 @@ export default function HomePage() {
                 <textarea placeholder="Project goals, timeline, and budget" className="input-field min-h-36 w-full" />
                 <button className="agency-button w-full">Request consultation</button>
               </form>
+              <div className="mt-5 rounded-3xl border border-cyan-300/15 bg-cyan-300/10 p-4 text-sm text-cyan-50">
+                <p className="font-semibold text-white">Client note</p>
+                <p className="mt-2">“The team made our launch process feel organized, premium, and genuinely low-stress.”</p>
+              </div>
             </GlassCard>
           </FadeIn>
         </div>
