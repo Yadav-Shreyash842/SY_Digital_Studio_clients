@@ -256,38 +256,49 @@ export default function HomePage() {
 
       <section id="projects" className="px-4 py-20 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <SectionHeading eyebrow="Featured Projects" title="Agency-style case studies with visuals, outcomes, and social proof." copy="Each project includes multiple images, results, client industry, duration, technologies, and a live demo entry point." />
-          <div className="grid gap-6">
+          <SectionHeading eyebrow="Featured Projects" title="Agency-style case studies with visuals, outcomes, and social proof." copy="Compact project cards with clear business impact and a direct live-demo action." />
+          <div className="grid gap-4">
             {featuredProjects.map((project, index) => (
               <FadeIn key={project.name} delay={index * 0.07}>
                 <GlassCard className="overflow-hidden rounded-[1.9rem]">
-                  <div className="grid lg:grid-cols-[1.1fr_0.9fr]">
-                    <div className="grid grid-cols-1 gap-2 p-3 sm:grid-cols-3">
-                      {project.images.map((image, imageIndex) => <img key={image} src={image} alt={`${project.name} ${imageIndex + 1}`} className="h-48 w-full rounded-2xl object-cover sm:h-56" />)}
+                  <div className="grid lg:grid-cols-[1fr_1fr]">
+                    <div className="grid grid-cols-2 gap-2 p-2.5">
+                      {Array.from({ length: 4 }).map((_, imageIndex) => {
+                        const image = project.images[imageIndex % project.images.length];
+
+                        return (
+                          <img
+                            key={`${project.name}-${imageIndex}`}
+                            src={image}
+                            alt={`${project.name} ${imageIndex + 1}`}
+                            className="h-28 w-full rounded-2xl object-cover sm:h-32"
+                          />
+                        );
+                      })}
                     </div>
-                    <div className="p-6 lg:p-8">
-                      <div className="flex flex-wrap items-center gap-3 text-sm text-slate-400">
+                    <div className="p-4 sm:p-5 lg:p-5">
+                      <div className="flex flex-wrap items-center gap-2 text-xs text-slate-400">
                         <span className="chip">{project.industry}</span>
                         <span className="chip">{project.duration}</span>
                       </div>
-                      <h3 className="mt-4 text-3xl font-semibold text-white">{project.name}</h3>
-                      <p className="mt-4 text-sm leading-7 text-slate-300">{project.overview}</p>
-                      <div className="mt-5 grid gap-5 md:grid-cols-2">
+                      <h3 className="mt-3 text-2xl font-semibold text-white">{project.name}</h3>
+                      <p className="mt-3 text-xs leading-6 text-slate-300">{project.overview}</p>
+                      <div className="mt-4 grid gap-4 md:grid-cols-2">
                         <div>
-                          <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Technologies Used</h4>
-                          <div className="mt-3 flex flex-wrap gap-2">{project.technologies.map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
+                          <h4 className="text-xs uppercase tracking-[0.25em] text-cyan-300/80">Technologies</h4>
+                          <div className="mt-2 flex flex-wrap gap-2">{project.technologies.slice(0, 3).map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
                         </div>
                         <div>
-                          <h4 className="text-sm uppercase tracking-[0.25em] text-cyan-300/80">Features</h4>
-                          <div className="mt-3 flex flex-wrap gap-2">{project.features.map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
+                          <h4 className="text-xs uppercase tracking-[0.25em] text-cyan-300/80">Features</h4>
+                          <div className="mt-2 flex flex-wrap gap-2">{project.features.slice(0, 3).map((item) => <span key={item} className="chip text-xs">{item}</span>)}</div>
                         </div>
                       </div>
-                      <div className="mt-5 rounded-3xl border border-cyan-300/15 bg-cyan-300/10 p-5 text-sm text-cyan-50">
+                      <div className="mt-4 rounded-3xl border border-cyan-300/15 bg-cyan-300/10 p-4 text-xs text-cyan-50">
                         <p className="font-semibold text-white">Results</p>
                         <p className="mt-2">{project.results}</p>
-                        <p className="mt-3 text-cyan-100/90">Testimonial: {project.testimonial}</p>
+                        <p className="mt-2 text-cyan-100/90">Testimonial: {project.testimonial}</p>
                       </div>
-                      <a href={project.liveDemo} className="mt-5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/10">
+                      <a href={project.liveDemo} className="mt-4 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold text-white transition hover:bg-white/10">
                         View live demo <FaPlay />
                       </a>
                     </div>
